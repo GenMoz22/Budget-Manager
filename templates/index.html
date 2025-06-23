@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Budget Manager
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <div class="row justify-content-between">
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h3 class="text-center">
+                {% if savings_goal_reached %}
+                    Congratulations! You've reached your savings goal.
+                {% else %}
+                    Keep going! You're {{ savings_goal_amount - savings }} away from your savings goal.
+                {% endif %}
+                <br>
+                Today's Date: {{ current_date }}
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-start">Category</th>
+                        <th class="text-end">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category, amount in expenses_by_category.items() %}
+                    <tr>
+                        <td class="text-start">{{ category }}</td>
+                        <td class="text-end">{{ amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="border-0 fw-bold text-end" colspan="1">Total Expenses</td>
+                        <td class="border-0 text-end">{{ total_expenses }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-0 fw-bold text-end" colspan="1">Savings Goal</td>
+                        <td class="border-0 fw-bold text-end">{{ savings_goal_amount }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
