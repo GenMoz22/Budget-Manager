@@ -1,0 +1,91 @@
+/* Size for brand */
+nav .navbar-brand {
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue {
+    color: #537fbe;
+}
+nav .navbar-brand .red {
+    color: #ea433b;
+}
+nav .navbar-brand .yellow {
+    color: #f5b82e;
+}
+nav .navbar-brand .green {
+    color: #2e944b;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Dark theme */
+body.dark-mode {
+    background-color: #343a40;
+    color: #f8f9fa;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+footer {
+    margin-top: 40px;
+}
+
+.btn-secondary {
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #537fbe;
+    border-color: #537fbe;
+}
+
+.btn-primary:hover {
+    background-color: #426aa3;
+    border-color: #426aa3;
+}
+
+.btn-danger {
+    background-color: #ea433b;
+    border-color: #ea433b;
+}
+
+.btn-danger:hover {
+    background-color: #d93a32;
+    border-color: #d93a32;
+}
+
+/* Toggle dark mode button */
+.toggle-dark-mode {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #343a40;
+    color: #f8f9fa;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggle-dark-mode:hover {
+    background-color: #23272b;
+}
