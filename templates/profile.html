@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Update Profile</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/profile" method="post">
+                        <div class="mb-3">
+                            <label for="salary">Salary</label>
+                            <input type="number" name="salary" id="salary" class="form-control" value="{{ user.salary }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="savings_goal">Savings Goal (%)</label>
+                            <input type="number" name="savings_goal" id="savings_goal" class="form-control" value="{{ user.savings_goal * 100 }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Change Password</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/profile" method="post">
+                        <div class="mb-3">
+                            <label for="old_password">Old Password</label>
+                            <input type="password" name="old_password" id="old_password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password">New Password</label>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmation">Confirm New Password</label>
+                            <input type="password" name="confirmation" id="confirmation" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Change Password</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Reset Expenses and History</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/reset_expenses" method="post" onsubmit="return confirm('Are you sure you want to reset all expenses and history? This action is irreversible.')">
+                        <button type="submit" class="btn btn-danger w-100">Reset Expenses and History</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

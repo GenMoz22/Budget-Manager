@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Log In</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/login" method="post">
+                        <div class="mb-3">
+                            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" name="password" placeholder="Password" type="password" required>
+                        </div>
+                        <button class="btn btn-primary w-100" type="submit">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

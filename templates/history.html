@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block main %}
+<h1>Expense History</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-start">Category</th>
+      <th class="text-end">Amount</th>
+      <th class="text-end">Date/Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for expense in expenses %}
+    <tr>
+      <td class="text-start">{{ expense.category }}</td>
+      <td class="text-end">{{ expense.amount }}</td> <td class="text-end">{{ expense.timestamp }}</td> </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
