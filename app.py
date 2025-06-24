@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -6,7 +7,10 @@ from collections import defaultdict
 from helpers import apology, login_required, format_date, calculate_total_expenses, calculate_average_expense
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'
+# Set a strong secret key for production environments.
+# For local development, 'your_secret_key' is fine, but for deployment,
+# it should be a randomly generated string stored as an environment variable.
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key_development_only')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///budget.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -241,4 +245,6 @@ def archive_expenses():
         flash(f'An error occurred while archiving expenses: {e}')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # This block ensures app.run() is only called when app.py is executed directly.
+    port = int(os.environ.get("PORT", 5000)) 
+    app.run(debug=True, host='0.0.0.0', port=port)
