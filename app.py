@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, date
 from collections import defaultdict
 from helpers import apology, login_required, format_date, calculate_total_expenses, calculate_average_expense
-from flask_wtf.csrf import CSRFProtect # Nuovo import
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 # Set a strong secret key for production environments.
@@ -48,14 +48,13 @@ class History(db.Model):
 # This block runs when the app module is loaded by Gunicorn or directly executed.
 # It ensures the database schema is created on startup in environments like Koyeb.
 with app.app_context():
-    # Attempt to connect and check if 'user' table exists.
-    # If not, create all tables. This prevents "table already exists" errors.
-    try:
-        db.session.execute(db.select(User)).first()
-    except Exception: # Catch any exception, including "no such table"
+    # Check if the 'user' table exists. If not, create all tables.
+    if not db.engine.has_table('user'):
         db.create_all()
-        # Print a message to logs if tables were created
         print("Database tables created.")
+    else:
+        print("Database tables already exist. Skipping creation.")
+
 
 @app.route('/')
 @login_required
@@ -203,7 +202,7 @@ def history():
         # Format expenses (optional)
         formatted_expenses = []
         for expense in expenses:
-            # Example formatting (modify based on your model):
+            #Formatting
             formatted_expense = {
                 "category": expense.category,
                 "amount": expense.amount,
@@ -260,5 +259,5 @@ def archive_expenses():
 
 if __name__ == '__main__':
     # This block ensures app.run() is only called when app.py is executed directly.
-    port = int(os.environ.get("PORT", 5000)) 
+    port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
