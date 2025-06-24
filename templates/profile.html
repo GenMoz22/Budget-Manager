@@ -14,12 +14,13 @@
                 </div>
                 <div class="card-body">
                     <form action="/profile" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <div class="mb-3">
-                            <label for="salary">Salary</label>
+                            <label for="salary">Salary</label> 
                             <input type="number" name="salary" id="salary" class="form-control" value="{{ user.salary }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="savings_goal">Savings Goal (%)</label>
+                            <label for="savings_goal">Savings Goal (%)</label> 
                             <input type="number" name="savings_goal" id="savings_goal" class="form-control" value="{{ user.savings_goal * 100 }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Update Profile</button>
@@ -32,16 +33,17 @@
                 </div>
                 <div class="card-body">
                     <form action="/profile" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <div class="mb-3">
-                            <label for="old_password">Old Password</label>
+                            <label for="old_password">Old Password</label> 
                             <input type="password" name="old_password" id="old_password" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="password">New Password</label>
+                            <label for="password">New Password</label> 
                             <input type="password" name="password" id="password" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="confirmation">Confirm New Password</label>
+                            <label for="confirmation">Confirm New Password</label> 
                             <input type="password" name="confirmation" id="confirmation" class="form-control">
                         </div>
                         <button type="submit" name="change_password" class="btn btn-primary w-100">Change Password</button>
@@ -54,6 +56,7 @@
                 </div>
                 <div class="card-body">
                     <form action="/reset_expenses" method="post" onsubmit="return confirm('Are you sure you want to reset all expenses and history? This action is irreversible.')">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <button type="submit" class="btn btn-danger w-100">Reset Expenses and History</button>
                     </form>
                 </div>
