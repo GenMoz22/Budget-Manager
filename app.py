@@ -47,7 +47,14 @@ class History(db.Model):
 # This block runs when the app module is loaded by Gunicorn or directly executed.
 # It ensures the database schema is created on startup in environments like Koyeb.
 with app.app_context():
-    db.create_all()
+    # Attempt to connect and check if 'user' table exists.
+    # If not, create all tables. This prevents "table already exists" errors.
+    try:
+        db.session.execute(db.select(User)).first()
+    except Exception: # Catch any exception, including "no such table"
+        db.create_all()
+        # Optionally, you might want to print a message to logs if tables were created
+        print("Database tables created.")
 
 @app.route('/')
 @login_required
