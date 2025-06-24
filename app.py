@@ -43,6 +43,12 @@ class History(db.Model):
 
     user = db.relationship('User', backref=db.backref('history', lazy=True))
 
+# Create database tables if they don't exist
+# This block runs when the app module is loaded by Gunicorn or directly executed.
+# It ensures the database schema is created on startup in environments like Koyeb.
+with app.app_context():
+    db.create_all()
+
 @app.route('/')
 @login_required
 def index():
