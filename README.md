@@ -1,6 +1,8 @@
 # Budget Manager
 
-Demo: https://mature-yolanda-genmoz22-209d36c1.koyeb.app/
+Demo: [https://mature-yolanda-genmoz22-209d36c1.koyeb.app/](https://vicious-hetti-budget-manager-82c039f2.koyeb.app/)
+
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?name=budget-manager&repository=GenMoz22%2FBudget-Manager&branch=main&instance_type=free&instances_min=0&autoscaling_sleep_idle_delay=300)
 
 #### Description:
 Budget Manager is a web application designed to help users manage their personal finances by tracking expenses, setting savings goals, and visualizing spending patterns. The application is built using Flask, a lightweight web framework for Python, and utilizes SQLite for data storage. The user interface is designed with Bootstrap for a responsive and modern look.
