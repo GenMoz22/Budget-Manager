@@ -1,8 +1,7 @@
 # Budget Manager
 
 **Demo**:
-
-[![Deploy to Koyeb](https://budgetmanager-x6i7.onrender.com/)
+[Deploy](https://budgetmanager-x6i7.onrender.com/)
 
 #### Description:
 Budget Manager is a web application designed to help users manage their personal finances by tracking expenses, setting savings goals, and visualizing spending patterns. The application is built using Flask, a lightweight web framework for Python, and utilizes SQLite for data storage. The user interface is designed with Bootstrap for a responsive and modern look.
