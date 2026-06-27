@@ -1,3 +1,11 @@
 *.env
-.idea
-.vscode
+pip-log.txt
+pip-delete-this-directory.txt
+.db
+.idea/
+.vscode/
+instance/
+cache/venv/
+output/
+venv/
+*/_pycache_/*
