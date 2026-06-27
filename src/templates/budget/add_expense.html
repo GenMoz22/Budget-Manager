@@ -1,23 +1,18 @@
 {% extends "layout.html" %}
-
-{% block title %}
-    Add Expense
-{% endblock %}
-
+{% block title %}Add Expense{% endblock %}
 {% block main %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    <h3>Add Expense</h3>
-                </div>
+                <div class="card-header"><h3>Add Expense</h3></div>
                 <div class="card-body">
-                    <form action="/add_expense" method="post">
+                    <form action="{{ url_for('budget.add_expense') }}" method="post">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
                         <div class="mb-3">
-                            <label for="category">Category</label>
-                            <select name="category" id="category" class="form-control" required>
+                            <label for="category" class="form-label">Category</label>
+                            <select name="category" id="category" class="form-select" required>
                                 <option value="House">House</option>
                                 <option value="Food & Household Supplies">Food & Household Supplies</option>
                                 <option value="Transportation">Transportation</option>
@@ -32,10 +27,12 @@
                                 <option value="Savings">Savings</option>
                             </select>
                         </div>
+
                         <div class="mb-3">
-                            <label for="amount">Amount</label>
+                            <label for="amount" class="form-label">Amount</label>
                             <input type="number" name="amount" id="amount" class="form-control" step="0.01" required>
                         </div>
+
                         <button type="submit" class="btn btn-primary w-100">Add Expense</button>
                     </form>
                 </div>

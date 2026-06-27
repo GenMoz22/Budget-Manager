@@ -1,27 +1,21 @@
 {% extends "layout.html" %}
-
-{% block title %}
-    Log In
-{% endblock %}
-
+{% block title %}Log In{% endblock %}
 {% block main %}
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">
-                    <h3>Log In</h3>
-                </div>
+                <div class="card-header"><h3>Log In</h3></div>
                 <div class="card-body">
-                    <form action="/login" method="post">
+                    <form action="{{ url_for('auth.login') }}" method="post">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                         <div class="mb-3">
-                            <label for="username">Username</label> 
-                            <input autocomplete="off" autofocus class="form-control" name="username" id="username" placeholder="Username" type="text" required>
+                            <label for="username">Username</label>
+                            <input autocomplete="off" autofocus class="form-control" name="username" id="username" type="text" required>
                         </div>
                         <div class="mb-3">
                             <label for="password">Password</label>
-                            <input class="form-control" name="password" id="password" placeholder="Password" type="password" required>
+                            <input class="form-control" name="password" id="password" type="password" required>
                         </div>
                         <button class="btn btn-primary w-100" type="submit">Log In</button>
                     </form>

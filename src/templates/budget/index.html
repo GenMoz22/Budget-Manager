@@ -11,19 +11,22 @@
     <div class="row mt-3">
         <div class="col-md-12">
             <h3 class="text-center">
-                {% if savings_goal_reached %}
-                    Congratulations! You've reached your savings goal.
+                {% if total_expenses == 0 and savings_goal_amount == 0 %}
+                Welcome! Go to your Profile to set your salary and start tracking!
+                {% elif savings_goal_reached %}
+                        # Passiamo anche monthly_salary al template per eventuali personalizzazioni visive
+You are currently on track to hit your savings goal! Keep going!
                 {% else %}
-                    Keep going! You're {{ savings_goal_amount - savings }} away from your savings goal.
+                You are {{ (savings_goal_amount - savings) | round(2) }} € away from your monthly savings goal. Keep it up!
                 {% endif %}
                 <br>
-                Today's Date: {{ current_date }}
+                <small class="text-muted fs-6">Today's Date: {{ current_date }}</small>
             </h3>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-12">
-            <table class="table table-striped">
+            <table class="table table-striped table-hover align-middle">
                 <thead>
                     <tr>
                         <th class="text-start">Category</th>

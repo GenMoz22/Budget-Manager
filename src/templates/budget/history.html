@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block main %}
+<h1>Expense History</h1>
+<table class="table table-striped table-hover align-middle">
+  <thead>
+  <tr>
+    <th class="text-start">Category</th>
+    <th class="text-end">Amount</th>
+    <th class="text-end">Date/Time</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for expense in expenses %}
+  <tr>
+    <td class="text-start">{{ expense.category }}</td>
+    <td class="text-end">{{ expense.amount }}</td>
+    <!-- Aggiungiamo data-utc per salvare il tempo originale e una classe -->
+    <td class="text-end utc-time" data-utc="{{ expense.timestamp }}">{{ expense.timestamp }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<!-- Script per convertire automaticamente i timestamp UTC nel fuso orario locale del browser -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.utc-time').forEach(function(el) {
+      const utcString = el.getAttribute('data-utc');
+      if (utcString) {
+        // Aggiunge la 'Z' finale per forzare JS a interpretarlo come UTC prima di localizzarlo
+        const date = new Date(utcString.replace(" ", "T") + "Z");
+        if (!isNaN(date.getTime())) {
+          el.textContent = date.toLocaleString(navigator.language, {
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit'
+          });
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

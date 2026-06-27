@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block main %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card mb-4">
+                <div class="card-header"><h3>Update Profile Info</h3></div>
+                <div class="card-body">
+                    <form action="{{ url_for('budget.profile') }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+                        <div class="mb-3">
+                            <label for="salary" class="form-label">Annual Salary (€)</label>
+                            <input type="number" name="salary" id="salary" class="form-control" step="0.01" value="{{ user.salary }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="savings_goal" class="form-label">Savings Goal (%)</label>
+                            <input type="number" name="savings_goal" id="savings_goal" class="form-control" step="1" min="0" max="100" value="{{ user.savings_goal * 100 }}" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header"><h3>Change Password</h3></div>
+                <div class="card-body">
+                    <form action="{{ url_for('budget.profile') }}" method="post">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" name="change_password" value="true"/>
+
+                        <div class="mb-3">
+                            <label for="old_password" class="form-label">Current Password</label>
+                            <input type="password" name="old_password" id="old_password" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">New Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmation" class="form-label">Confirm New Password</label>
+                            <input type="password" name="confirmation" id="confirmation" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning w-100">Change Password</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><h3>Reset Expenses and History</h3></div>
+                <div class="card-body">
+                    <form action="{{ url_for('budget.reset_expenses') }}" method="post" onsubmit="return confirm('Irreversible action. Proceed?')">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button type="submit" class="btn btn-danger w-100">Reset Expenses and History</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
