@@ -16,16 +16,14 @@ FROM python:3.11-slim AS runner
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV FLASK_APP=app.py
-ENV FLASK_ENV=production
 
 COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 
-COPY app.py helpers.py ./
-COPY templates/ ./templates/
-COPY static/ ./static/
+WORKDIR /app
+COPY run.py ./
+COPY src/ ./src/
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "run:app"]

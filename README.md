@@ -109,9 +109,28 @@ To build and run the container locally by passing the configuration file:
 ```Bash
 # Build the image
 docker build -t budget_manager .
-
+```
+```Bash
+docker volume create budget_db_data
+```
+```Bash
 # Run the container on port 8000 with the .env file loaded
-docker run -p 8000:8000 --env-file .env budget_manager
+docker run -p 8000:8000 --env-file .env -v budget_db_data:/app/instance budget_manager
+```
+### Docker Compose
+Docker Compose automatically configures persistent volumes to prevent database data loss and loads environment variables.
+
+Make sure you have a .env file configured in the project root directory.
+
+Start the application in the background:
+```Bash
+docker compose up -d
+```
+The application will be accessible at http://localhost:8000.
+
+To stop the services:
+```Bash
+docker compose down
 ```
 ## Deployment to Production
 The application is ready for modern cloud platforms (Render, Koyeb, Railway, AWS).
