@@ -9,3 +9,6 @@ cache/venv/
 output/
 venv/
 */_pycache_/*
+__pycache__/
+*.py[cod]
+*$py.class
